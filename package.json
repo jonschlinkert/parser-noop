@@ -1,0 +1,53 @@
+{
+  "name": "parser-noop",
+  "description": "noop parser, consolidate.js style. Works with Assemble, express.js, parser-cache or any application that follows consolidate.js conventions. ",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/parser-noop",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/parser-noop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/parser-noop/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jonschlinkert/parser-noop/blob/master/LICENSE-MIT"
+    }
+  ],
+  "keywords": [
+    "assemble",
+    "cache",
+    "compile",
+    "consolidate",
+    "engine",
+    "express",
+    "noop",
+    "parse",
+    "parser",
+    "parsers",
+    "pass-through",
+    "process",
+    "templates"
+  ],
+  "main": "index.js",
+  "parsers": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "^4.0.4",
+    "verb": ">= 0.2.6"
+  },
+  "dependencies": {
+    "parser-utils": "^0.1.1"
+  }
+}
