@@ -1,7 +1,7 @@
 /*!
- * parser-cache <https://github.com/jonschlinkert/parser-cache>
+ * parser-noop <https://github.com/jonschlinkert/parser-noop>
  *
- * Copyright (c) 2014 Jon Schlinkert, Brian Woodward, contributors.
+ * Copyright (c) 2014 Jon Schlinkert, contributors.
  * Licensed under the MIT license.
  */
 
@@ -15,10 +15,12 @@ var noop = require('..');
 describe('parsers', function() {
   it('should pass through content with noop parser.', function (done) {
     noop.parse('<%= name %>', function (err, file) {
+      if (err) console.log(err);
+
       file.should.eql({
         data: {},
-        original: '<%= abc %>',
-        content: '<%= abc %>',
+        original: '<%= name %>',
+        content: '<%= name %>',
         options: {}
       });
       done();
