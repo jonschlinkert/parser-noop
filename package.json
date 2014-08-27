@@ -1,7 +1,7 @@
 {
   "name": "parser-noop",
   "description": "noop parser, consolidate.js style. Works with Assemble, express.js, parser-cache or any application that follows consolidate.js conventions. ",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/jonschlinkert/parser-noop",
   "author": {
     "name": "Jon Schlinkert",
