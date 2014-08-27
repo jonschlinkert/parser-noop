@@ -14,25 +14,29 @@ var noop = require('..');
 
 describe('parsers', function() {
   it('should pass through content with noop parser.', function (done) {
-    noop.parse('<%= name %>', function (err, file) {
+    noop.parse('<%= name %>', {x: 'x', y: 'y', z: 'z'}, function (err, file) {
       if (err) console.log(err);
 
-      file.should.eql({
-        data: {},
-        original: '<%= name %>',
-        content: '<%= name %>',
-        options: {}
-      });
+      file.should.have.property('path');
+      file.should.have.property('orig');
+      file.should.have.property('data');
+      file.should.have.property('content');
+      file.data.should.have.property('x');
+      file.data.should.have.property('y');
+      file.data.should.have.property('z');
       done();
     });
   });
 
   it('should synchronously pass through content.', function () {
-    noop.parseSync('<%= abc %>').should.eql({
-      data: {},
-      original: '<%= abc %>',
-      content: '<%= abc %>',
-      options: {}
-    });
+    var file = noop.parseSync('<%= abc %>', {x: 'x', y: 'y', z: 'z'});
+
+    file.should.have.property('path');
+    file.should.have.property('orig');
+    file.should.have.property('data');
+    file.should.have.property('content');
+    file.data.should.have.property('x');
+    file.data.should.have.property('y');
+    file.data.should.have.property('z');
   });
 });
