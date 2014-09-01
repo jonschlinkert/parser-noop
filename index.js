@@ -33,6 +33,7 @@ parser.parse = function noop(file, options, next) {
   }
 
   var opts = _.extend({}, options);
+
   try {
     next(null, utils.extendFile(file, opts));
   } catch (err) {
@@ -51,10 +52,8 @@ parser.parse = function noop(file, options, next) {
  */
 
 parser.parseSync = function noopSync(file, options) {
-  var opts = _.extend({}, options);
-
   try {
-    return utils.extendFile(file, opts);
+    return utils.extendFile(file, options);
   } catch (err) {
     return err;
   }
