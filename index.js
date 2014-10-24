@@ -7,53 +7,65 @@
 var _ = require('lodash');
 var utils = require('parser-utils');
 
-
 /**
- * Export `parser`
+ * Expose `parser`
  *
  * @type {Object}
  */
 
 var parser = module.exports;
 
-
 /**
  * Parse the given `file` and callback `next(err, file)`.
  *
  * @param {String|Object} `file` The object or string to parse.
- * @param {Object|Function} `options` or `next` callback function.
+ * @param {Object|Function} `locals` or `next` callback function.
  * @param {Function} `next` callback function.
  * @api public
  */
 
-parser.parse = function noop(file, options, next) {
-  if (typeof options === 'function') {
-    next = options;
-    options = {};
+parser.parse = function noop(file, locals, next) {
+  if (typeof locals === 'function') {
+    next = locals;
+    locals = {};
   }
 
-  var opts = _.extend({}, options);
+  var o = {locals: locals || {}};
 
   try {
-    next(null, utils.extendFile(file, opts));
+    if (typeof file === 'string') {
+      o.content = file;
+    } else {
+      o = file || {};
+      o.content = o.content || '';
+    }
+
+    next(null, o);
   } catch (err) {
     next(err);
     return;
   }
 };
 
-
 /**
- * Parse the given `file` and return a normalized `file` object.
+ * Parse the given `file` and return a minimal normalized `file` object.
  *
  * @param {String|Object} `file` The object or string to parse.
- * @param {Object} `options` to pass to [gray-matter].
  * @api public
  */
 
-parser.parseSync = function noopSync(file, options) {
+parser.parseSync = function noopSync(file, locals) {
+  var o = {locals: locals || {}};
+
   try {
-    return utils.extendFile(file, options);
+    if (typeof file === 'string') {
+      o.content = file;
+    } else {
+      o = file || {};
+      o.content = o.content || '';
+    }
+
+    return o;
   } catch (err) {
     return err;
   }
