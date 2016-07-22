@@ -4,7 +4,6 @@
  * Module dependencies.
  */
 
-var _ = require('lodash');
 var utils = require('parser-utils');
 
 /**
